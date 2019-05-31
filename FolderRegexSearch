@@ -1,0 +1,36 @@
+#FolderRegexSearch.py
+#Searches all .txt files in a folder for a line that matches a usersupplied line
+import re, os
+
+#Gets input for searchable phrase
+
+print('What phrase would you like to search for?')
+phrase = input()
+phraseRegex = re.compile(phrase)
+
+#Opens the folder
+
+allFiles = (os.listdir('C:\\Users\hairy\AppData\Local\Programs\Python\Python37-32\ATBS Projects'))
+txtFiles = []
+
+#Searches the folder for .txt files
+
+txtRegex = re.compile(r'txt$')
+for files in range(len(allFiles)):
+    if txtRegex.search(allFiles[files]) != None:
+        txtFiles.append(allFiles[files])
+
+#for loop to open each file
+
+z = 0
+for i in range(len(txtFiles)):
+    currentFile = open(txtFiles[i], 'r')
+    #Searching the file
+    searchableContent = currentFile.read()
+    #Printing the match if its found
+    if phraseRegex.search(searchableContent) != None:
+        print('Your phrase was found in ' + txtFiles[i])
+        z += 1
+if z == 0:
+    print('Your phrase wasn\'t found in any text files')
+        
