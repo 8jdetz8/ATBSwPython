@@ -1,0 +1,26 @@
+#! python3
+#filePrefixadder.py - Adds project_ to the beginning of every item.
+
+import os, shutil, re
+
+# Asks user for their prefix
+
+print('What prefix would you like to add to your files?')
+prefix = input()
+
+#Search for any files
+
+fileRegex = re.compile(r'(.*)')
+
+#Loops over every name and puts project_ in
+
+for files in os.listdir('.'):
+    ogName = fileRegex.search(files)
+    newFileName = prefix + ogName.group()
+    #get absolute file paths
+    absWorkingDir = os.path.abspath('.')
+    ogName = os.path.join(absWorkingDir, ogName.group())
+    newFileName = os.path.join(absWorkingDir, newFileName)
+    #prints out new names rather than doing it
+    print('Renaming "%s" to "%s"...' % (ogName, newFileName))
+    #shutil.move(ogName, newFileName) #ONLY REMOVE IF ACTUALLY WANT TO REMOVE
