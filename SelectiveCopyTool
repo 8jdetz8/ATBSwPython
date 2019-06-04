@@ -1,0 +1,14 @@
+#! python3
+# selectiveCopy.py - search through a folder tree
+# and copy all files with any file ending to a new  
+# folder
+
+import os, re, shutil
+print('What type of file would you like to search for?')
+fileType = input()
+newDir = #Wherever you want to move your files to
+for foldername, subfolders, filenames in os.walk(#wherever you're copying files from):
+    for filename in filenames:
+        if filename.endswith(str(fileType)):
+            shutil.copy(os.path.join(foldername, filename), newDir)
+print('Files have been moved')
