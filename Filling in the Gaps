@@ -1,0 +1,17 @@
+#! python3
+#fillingInTheGaps.py-Searches a folder to find files with a given prefix
+#(spam1.txt, spam2.txt...) finds any gaps (spam3.txt, spam5.txt) and renames
+#later files to close gaps.
+
+import os, shutil, re
+#TODO open capitals folder
+folder = os.listdir('C:\\Users\hairy\AppData\Local\Programs\Python\Python37-32\ATBS Projects')
+folder.sort
+#TODO create regex to search for prefix
+capsAnswRegex = re.compile(r'capitalquiz_answers\d+')
+matches = list(filter(capsAnswRegex.match, folder))
+i = 0 
+for file in matches:
+    i += 1
+    os.rename(os.path.join('C:\\Users\hairy\AppData\Local\Programs\Python\Python37-32\ATBS Projects', file), 'capitalquiz_answers_' + str(i))
+print('done')
